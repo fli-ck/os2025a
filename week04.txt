@@ -7,3 +7,4 @@ git commit --amend -m "수정할커밋메세지"
 git reset --hard HEAD~최근커밋부터삭제할갯수
 git fetch
 git pull
+git push -f origin main
