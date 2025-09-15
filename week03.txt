@@ -1,5 +1,15 @@
 리눅스 명령어
 echo "출력할 내용" >> 파일명
+rm 파일명
+history
 
 
 깃 명령어
+git branch -M main
+git remote add origin https://github.com/아이디/원격리포지토리이름.git
+git push -u origin main
+git push
+git remote -v
+git remote remove origin
+git clone 원격리포지토리주소
+git clone 원격리포지토리주소 .
