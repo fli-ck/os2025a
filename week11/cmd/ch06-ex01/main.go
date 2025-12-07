@@ -4,10 +4,10 @@ import "fmt"
 
 func main() {
 	subjects := [4]string{"Go", "Javascript", "Python", "Linux"}
-	subjectsSlice := subjects[:3]
+	subjectsSlice := subjects[:3] // Go, Javascript, Python
 	// subjects[0] = "Java"
 	subjectsSlice[0] = "Java"
-	subjectsSlice = append(subjectsSlice, "Go", "Kotlin", "Database")
+	subjectsSlice = append(subjectsSlice, "Go", "Kotlin", "Database") // Java, Javascript, Python, Go, Kotlin, Database
 	for _, subject := range subjects {
 		fmt.Println(subject)
 	}

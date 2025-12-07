@@ -13,7 +13,7 @@ func main() {
 		log.Fatal(err)
 	}
 	hap := 0.0
-	for i := 0; i < len(weights); i++ {
+	for i := range weights {
 		hap = hap + weights[i]
 	}
 	weeks := float64(len(weights))
