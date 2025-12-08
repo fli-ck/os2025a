@@ -31,9 +31,13 @@ func main() {
 
 ## ch06-ex01
 
-슬라이싱
+슬라이스
 
-Array의 슬라이싱은 Python과 비슷하게 `:`으로 가능하다.
+Array와 다르게 슬라이스는 Dynamically Sized된 형태로 동작한다.
+
+`[]T`는 타입 `T`에 대한 슬라이스를 의미한다.
+
+범위 지정은 Python과 비슷하게 `:`으로 가능하다.
 
 예를 들어, `array := [4]int{1, 2, 3, 4}`에서 1, 2, 3까지만 잘라내고 싶은 경우, `newArray := [:3]`으로 구현 가능하다.
 
@@ -49,11 +53,11 @@ package main
 import "fmt"
 
 func main() {
-	subjects := [4]string{"Go", "Javascript", "Python", "Linux"}
-	subjectsSlice := subjects[:3] // Go, Javascript, Python
+	subjects := [4]string{"Go", "Javascript", "Python", "Linux"} // 4개의 string이 있는 array를 생성
+	subjectsSlice := subjects[:3] // Go, Javascript, Python에 대해서만 잘라낸 slice (index상 0, 1, 2)
 	// subjects[0] = "Java"
-	subjectsSlice[0] = "Java"
-	subjectsSlice = append(subjectsSlice, "Go", "Kotlin", "Database") // Java, Javascript, Python, Go, Kotlin, Database
+	subjectsSlice[0] = "Java" // 0번 항목을 Java로 변경
+	subjectsSlice = append(subjectsSlice, "Go", "Kotlin", "Database") // Java, Javascript, Python에 Go, Kotlin, Database을 append (append 함수는 slice만 가능하고 array는 불가!!)
 	for _, subject := range subjects {
 		fmt.Println(subject)
 	}
@@ -72,13 +76,13 @@ GetFloats만 설명
 
 ```go
 func GetFloats(fileName string) ([3]float64, error) {
-	var numbers [3]float64 // 총 3주간의 Floats를 읽을 예정
-	file, err := os.Open(fileName) // fileName 파일명의 파일 열기
+	var numbers [3]float64 // 총 3주간의 Floats를 읽을 예정이므로 변수 선언 (초기화는 아직)
+	file, err := os.Open(fileName) // fileName 파일명의 파일 열기, file은 `*File` 타입을 가진다.
 	if err != nil {
 		return numbers, err // 파일 열기 오류나면 float64 array(비어있을거임)와 오류 반환
 	}
 	i := 0 // i 변수 선언
-	scanner := bufio.NewScanner(file) // 파일 스캐너 생성
+	scanner := bufio.NewScanner(file) // 파일 스캐너 생성 (NewReader와 헷갈리지 않도록 하자)
 	for scanner.Scan() { // 스캔을 하는 동안
 		numbers[i], err = strconv.ParseFloat(scanner.Text(), 64) // numbers array i번째에 scanner.Text()를 입력값으로 한 ParseFloat 결과값을 지정, 오류값(or nil) 지정
 		if err != nil {
